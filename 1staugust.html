@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Girlfriend Day 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff0f5 50%, #ffe4f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .floating-emoji {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            animation: float-up 3s ease-in forwards;
+            z-index: 10;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 1;
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-400px) translateX(100px) scale(0.5);
+            }
+        }
+
+        .heart-burst {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .heart {
+            display: inline-block;
+            color: #ff69b4;
+            font-size: 24px;
+            animation: pop-burst 1.5s ease-out forwards;
+        }
+
+        @keyframes pop-burst {
+            0% {
+                opacity: 1;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) rotate(360deg);
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff1493;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.2);
+            animation: bounce-in 0.8s ease-out;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: #ffb6d9;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.2);
+            margin: 20px 0;
+            animation: slide-up 0.8s ease-out;
+        }
+
+        .message {
+            font-size: 1.3em;
+            color: #333;
+            line-height: 1.8;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .highlight {
+            color: #ff1493;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .interactive-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+            justify-items: center;
+        }
+
+        .clickable-item {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            user-select: none;
+            position: relative;
+        }
+
+        .clickable-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .clickable-item:active {
+            transform: scale(0.95);
+        }
+
+        .heart-box {
+            background: linear-gradient(135deg, #ffb6d9, #ffc0e0);
+        }
+
+        .gift-box {
+            background: linear-gradient(135deg, #fff0b3, #ffe680);
+        }
+
+        .star-box {
+            background: linear-gradient(135deg, #e0bbff, #f0d9ff);
+        }
+
+        .quote {
+            font-style: italic;
+            color: #666;
+            font-size: 1.1em;
+            margin: 25px 0;
+            padding: 20px;
+            background: #fff5f8;
+            border-left: 4px solid #ff69b4;
+            border-radius: 8px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .random-message {
+            background: #ffe4f0;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.05em;
+            color: #333;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .particle-animation {
+            animation: particle-fall 2s ease-out forwards;
+        }
+
+        @keyframes particle-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-20px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(300px) rotate(360deg);
+            }
+        }
+
+        @keyframes bounce-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slide-up {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .decorative-hearts {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .heart-1 {
+            top: 50px;
+            left: 20px;
+            animation-delay: 0s;
+        }
+
+        .heart-2 {
+            top: 200px;
+            right: 30px;
+            animation-delay: 2s;
+        }
+
+        .heart-3 {
+            bottom: 100px;
+            left: 40px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(20px);
+            }
+        }
+
+        .counter {
+            font-size: 0.9em;
+            color: #ff69b4;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .footer-emoji {
+            font-size: 1.5em;
+            display: block;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .main-card {
+                padding: 25px;
+            }
+
+            .message {
+                font-size: 1.1em;
+            }
+
+            .clickable-item {
+                width: 70px;
+                height: 70px;
+                font-size: 2em;
+            }
+
+            .interactive-area {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative floating hearts -->
+    <div class="decorative-hearts heart-1">💕</div>
+    <div class="decorative-hearts heart-2">💕</div>
+    <div class="decorative-hearts heart-3">💕</div>
+
+    <div class="container">
+        <h1>Happy Girlfriend Day! 🎉</h1>
+        <div class="date-badge">08/01 - Chúc mừng ngày của em nhé!</div>
+
+        <div class="main-card">
+            <div class="message">
+                Em là <span class="highlight">cô gái đặc biệt nhất</span> trong đời anh 💕
+            </div>
+
+            <div class="quote">
+                "Ngày hôm nay là ngày dành để tôn vinh những người phụ nữ tuyệt vời như bạn nhỏ của anh. Cảm ơn vì đã đến và làm cho cuộc sống của anh trở nên đầy màu sắc và niềm vuiiiiii"
+            </div>
+
+            <div class="message">
+                Bấm vào các nút dưới để gửi yêu thương cho em ✨
+            </div>
+
+            <!-- Interactive area -->
+            <div class="interactive-area">
+                <div class="clickable-item heart-box" onclick="createHeartBurst(event)">💗</div>
+                <div class="clickable-item gift-box" onclick="createGiftBurst(event)">🎁</div>
+                <div class="clickable-item star-box" onclick="createStarBurst(event)">⭐</div>
+            </div>
+
+            <div class="counter">
+                <span id="heart-count">0</span> trái tim · 
+                <span id="gift-count">0</span> quà · 
+                <span id="star-count">0</span> sao
+            </div>
+
+            <!-- Random message -->
+            <div class="random-message" id="randomMessage">
+                Hãy bấm vào tim, quà, hoặc sao để nhận lời chúc ❤️
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button class="btn" onclick="playMessage()">🎵 Nghe lời chúc</button>
+                <button class="btn" onclick="showAllMessages()">📝 Tất cả lời chúc</button>
+                <button class="btn" onclick="resetCounter()">🔄 Làm lại</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-emoji">💕 Anh yêu em rất nhiều 💕</div>
+            <p>Tạo với 💖 vào ngày Girlfriend Day</p>
+        </div>
+    </div>
+
+    <script>
+        let heartCount = 0;
+        let giftCount = 0;
+        let starCount = 0;
+
+        const loveMessages = [
+            "Em là người làm cuộc sống anh trở nên có ý nghĩa 💕",
+            "Chúc bạn nhỏ của anh sẽ giữ mãi nụ cười trên môi 😊",
+            "Anh yêu bé từng ngày, từng giờ, từng phút, từng giây💗",
+            "Àu, có lẽ bạn nhỏ chính xác là tất cả những gì anh tìm kiếm hêhhehe 🌟",
+            "Cảm ơn em vì tất cả những điều tuyệt vờiiiii 🎀",
+            "Sự xuất hiện của em khiến thế giới của anh có thêm sắc màu hêêhheheheh",
+            "Anh sẽ luôn ở bên cạnh bạn nhỏ của anh nhé!💞",
+            "Em là một nửa của anh, nửa còn lại là của cuộc sống của anh hihihihihihihi",
+            "Ngày hôm nay là ngày để tôn vinh vẻ đẹp của em, dù cho tất cả những ngôn từ đẹp đẽ nhất trong từ điển cũng không đủ để miêu tả nó 👑",
+            "Anh vô cùng may mắn khi có bạn nhỏ của anh ở bên cạnh 🍀"
+        ];
+
+        function createHeartBurst(event) {
+            heartCount++;
+            document.getElementById('heart-count').textContent = heartCount;
+            createBurst(event, '💗', 8);
+            showRandomMessage();
+        }
+
+        function createGiftBurst(event) {
+            giftCount++;
+            document.getElementById('gift-count').textContent = giftCount;
+            createBurst(event, '🎁', 8);
+            showRandomMessage();
+        }
+
+        function createStarBurst(event) {
+            starCount++;
+            document.getElementById('star-count').textContent = starCount;
+            createBurst(event, '⭐', 8);
+            showRandomMessage();
+        }
+
+        function createBurst(event, emoji, count) {
+            const rect = event.target.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+
+            for (let i = 0; i < count; i++) {
+                const angle = (i / count) * Math.PI * 2;
+                const velocity = 5 + Math.random() * 5;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+
+                const heart = document.createElement('div');
+                heart.className = 'floating-emoji';
+                heart.textContent = emoji;
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                heart.style.setProperty('--vx', vx);
+                heart.style.setProperty('--vy', vy);
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 3000);
+            }
+        }
+
+        function showRandomMessage() {
+            const message = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+            const messageEl = document.getElementById('randomMessage');
+            messageEl.textContent = message;
+            messageEl.style.animation = 'none';
+            setTimeout(() => {
+                messageEl.style.animation = 'slide-up 0.5s ease-out';
+            }, 10);
+        }
+
+        function playMessage() {
+            const messages = [
+                "Gửi công chúa nhỏ của anh",
+                "Anh yêu em vô cùng vô tận",
+                "Cảm ơn em đã ở bên anh"
+            ];
+            const msg = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Simple text-to-speech simulation
+            alert('💕 ' + msg + ' 💕\n\nChúc em có một ngày tuyệt vời!');
+        }
+
+        function showAllMessages() {
+            let allMessages = loveMessages.join('\n\n');
+            alert('📝 Tất cả lời chúc từ anh:\n\n' + allMessages);
+        }
+
+        function resetCounter() {
+            heartCount = 0;
+            giftCount = 0;
+            starCount = 0;
+            document.getElementById('heart-count').textContent = '0';
+            document.getElementById('gift-count').textContent = '0';
+            document.getElementById('star-count').textContent = '0';
+            document.getElementById('randomMessage').textContent = 'Đã reset số tim, quà và sao. ';
+        }
+
+        // Auto show a message on load
+        window.addEventListener('load', () => {
+            setTimeout(showRandomMessage, 500);
+        });
+    </script>
+</body>
+</html>
