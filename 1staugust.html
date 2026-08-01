@@ -344,7 +344,7 @@
 
     <div class="container">
         <h1>Happy Girlfriend Day! 🎉</h1>
-        <div class="date-badge">08/01 - Chúc mừng ngày của em nhé!</div>
+        <div class="date-badge">1 August - Ngày của những cô gái yêu quý</div>
 
         <div class="main-card">
             <div class="message">
@@ -352,7 +352,7 @@
             </div>
 
             <div class="quote">
-                "Ngày hôm nay là ngày dành để tôn vinh những người phụ nữ tuyệt vời như bạn nhỏ của anh. Cảm ơn vì đã đến và làm cho cuộc sống của anh trở nên đầy màu sắc và niềm vuiiiiii"
+                "Ngày hôm nay là ngày dành để tôn vinh những người phụ nữ tuyệt vời như em. Cảm ơn em đã làm cho cuộc sống của anh trở nên đầy màu sắc và niềm vui."
             </div>
 
             <div class="message">
@@ -391,22 +391,33 @@
         </div>
     </div>
 
+    <audio id="bgMusic" loop>
+        <source src="https://raw.githubusercontent.com/vietduygiapdz/1staugust/main/bgmusic.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
         let heartCount = 0;
         let giftCount = 0;
         let starCount = 0;
+        let currentAudio = null;
+
+        const audioUrls = {
+            guicongchua: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/main/guicongchua.m4a",
+            anhyeuem: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/main/anhyeuem.m4a",
+            camon: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/main/camon.m4a"
+        };
 
         const loveMessages = [
             "Em là người làm cuộc sống anh trở nên có ý nghĩa 💕",
-            "Chúc bạn nhỏ của anh sẽ giữ mãi nụ cười trên môi 😊",
-            "Anh yêu bé từng ngày, từng giờ, từng phút, từng giây💗",
-            "Àu, có lẽ bạn nhỏ chính xác là tất cả những gì anh tìm kiếm hêhhehe 🌟",
-            "Cảm ơn em vì tất cả những điều tuyệt vờiiiii 🎀",
-            "Sự xuất hiện của em khiến thế giới của anh có thêm sắc màu hêêhheheheh",
-            "Anh sẽ luôn ở bên cạnh bạn nhỏ của anh nhé!💞",
-            "Em là một nửa của anh, nửa còn lại là của cuộc sống của anh hihihihihihihi",
-            "Ngày hôm nay là ngày để tôn vinh vẻ đẹp của em, dù cho tất cả những ngôn từ đẹp đẽ nhất trong từ điển cũng không đủ để miêu tả nó 👑",
-            "Anh vô cùng may mắn khi có bạn nhỏ của anh ở bên cạnh 🍀"
+            "Mỉm cười của em là hạnh phúc lớn nhất của anh 😊",
+            "Anh yêu em từng ngày, từng giờ, từng phút 💗",
+            "Em là những gì anh luôn tìm kiếm 🌟",
+            "Cảm ơn em vì tất cả những điều tuyệt vời 🎀",
+            "Em khiến thế giới này trở nên đẹp hơn 🌸",
+            "Anh sẽ luôn ở bên em, bất cứ khi nào 💞",
+            "Em là nữa của anh, nữa của cuộc sống anh 💕",
+            "Ngày hôm nay là ngày để tôn vinh vẻ đẹp của em 👑",
+            "Anh vô cùng may mắn khi có em bên cạnh 🍀"
         ];
 
         function createHeartBurst(event) {
@@ -466,14 +477,24 @@
 
         function playMessage() {
             const messages = [
-                "Gửi công chúa nhỏ của anh",
-                "Anh yêu em vô cùng vô tận",
-                "Cảm ơn em đã ở bên anh"
+                { text: "Gửi công chúa nhỏ của anh", audio: audioUrls.guicongchua },
+                { text: "Anh yêu em vô cùng vô tận", audio: audioUrls.anhyeuem },
+                { text: "Cảm ơn em đã ở bên anh", audio: audioUrls.camon }
             ];
-            const msg = messages[Math.floor(Math.random() * messages.length)];
             
-            // Simple text-to-speech simulation
-            alert('💕 ' + msg + ' 💕\n\nChúc em có một ngày tuyệt vời!');
+            const selected = messages[Math.floor(Math.random() * messages.length)];
+            
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            
+            currentAudio = new Audio(selected.audio);
+            currentAudio.play().catch(error => {
+                console.log("Không thể phát âm thanh:", error);
+            });
+            
+            alert('💕 ' + selected.text + ' 💕\n\nChúc em có một ngày tuyệt vời!');
         }
 
         function showAllMessages() {
@@ -488,12 +509,20 @@
             document.getElementById('heart-count').textContent = '0';
             document.getElementById('gift-count').textContent = '0';
             document.getElementById('star-count').textContent = '0';
-            document.getElementById('randomMessage').textContent = 'Đã reset số tim, quà và sao. ';
+            document.getElementById('randomMessage').textContent = 'Đã làm lại! Hãy bấm lại để tiếp tục gửi yêu thương 💕';
         }
 
         // Auto show a message on load
         window.addEventListener('load', () => {
             setTimeout(showRandomMessage, 500);
+            
+            const bgMusic = document.getElementById('bgMusic');
+            if (bgMusic) {
+                bgMusic.volume = 0.3;
+                bgMusic.play().catch(error => {
+                    console.log("Không thể phát nhạc nền:", error);
+                });
+            }
         });
     </script>
 </body>
