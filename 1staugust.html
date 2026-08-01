@@ -23,56 +23,10 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             text-align: center;
             position: relative;
             z-index: 1;
-        }
-
-        .floating-emoji {
-            position: fixed;
-            font-size: 40px;
-            pointer-events: none;
-            animation: float-up 3s ease-in forwards;
-            z-index: 10;
-        }
-
-        @keyframes float-up {
-            0% {
-                opacity: 1;
-                transform: translateY(0) translateX(0) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-400px) translateX(100px) scale(0.5);
-            }
-        }
-
-        .heart-burst {
-            position: fixed;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .heart {
-            display: inline-block;
-            color: #ff69b4;
-            font-size: 24px;
-            animation: pop-burst 1.5s ease-out forwards;
-        }
-
-        @keyframes pop-burst {
-            0% {
-                opacity: 1;
-                transform: scale(0) rotate(0deg);
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: scale(1) rotate(360deg);
-            }
         }
 
         h1 {
@@ -116,6 +70,55 @@
             color: #ff1493;
             font-weight: bold;
             font-size: 1.2em;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #666;
+            font-size: 1.1em;
+            margin: 25px 0;
+            padding: 20px;
+            background: #fff5f8;
+            border-left: 4px solid #ff69b4;
+            border-radius: 8px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: #f0f0f0;
+            border: 2px solid #ffb6d9;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: #ffb6d9;
+            color: white;
+            border-color: #ff1493;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .interactive-area {
@@ -162,15 +165,25 @@
             background: linear-gradient(135deg, #e0bbff, #f0d9ff);
         }
 
-        .quote {
-            font-style: italic;
-            color: #666;
-            font-size: 1.1em;
-            margin: 25px 0;
-            padding: 20px;
-            background: #fff5f8;
-            border-left: 4px solid #ff69b4;
-            border-radius: 8px;
+        .counter {
+            font-size: 0.9em;
+            color: #ff69b4;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .random-message {
+            background: #ffe4f0;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.05em;
+            color: #333;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
         .button-group {
@@ -203,33 +216,70 @@
             transform: translateY(-1px);
         }
 
-        .random-message {
-            background: #ffe4f0;
-            padding: 15px 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            font-size: 1.05em;
-            color: #333;
-            min-height: 60px;
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 70px);
+            gap: 12px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .puzzle-piece {
+            width: 70px;
+            height: 70px;
+            background: #ffb6d9;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 2em;
+            cursor: grab;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            user-select: none;
+            font-weight: bold;
         }
 
-        .particle-animation {
-            animation: particle-fall 2s ease-out forwards;
+        .puzzle-piece:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
-        @keyframes particle-fall {
-            0% {
-                opacity: 1;
-                transform: translateY(-20px) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(300px) rotate(360deg);
-            }
+        .puzzle-piece:active {
+            cursor: grabbing;
+            transform: scale(0.95);
+        }
+
+        .puzzle-piece.matched {
+            background: linear-gradient(135deg, #90EE90, #98FB98);
+            color: white;
+            cursor: default;
+            box-shadow: 0 6px 16px rgba(144, 238, 144, 0.4);
+        }
+
+        .game-message {
+            color: #ff1493;
+            font-weight: bold;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+
+        .emoji-burst {
+            position: fixed;
+            pointer-events: none;
+            font-size: 40px;
+            animation: float-up 3s ease-in forwards;
+            z-index: 10;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            pointer-events: none;
+            animation: confetti-fall 3s ease-in forwards;
+            z-index: 1000;
+            border-radius: 50%;
         }
 
         @keyframes bounce-in {
@@ -257,46 +307,26 @@
             }
         }
 
-        .decorative-hearts {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .heart-1 {
-            top: 50px;
-            left: 20px;
-            animation-delay: 0s;
-        }
-
-        .heart-2 {
-            top: 200px;
-            right: 30px;
-            animation-delay: 2s;
-        }
-
-        .heart-3 {
-            bottom: 100px;
-            left: 40px;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
+        @keyframes float-up {
+            0% {
+                opacity: 1;
+                transform: translateY(0) translateX(0) scale(1);
             }
-            50% {
-                transform: translateY(20px);
+            100% {
+                opacity: 0;
+                transform: translateY(-400px) translateX(100px) scale(0.5);
             }
         }
 
-        .counter {
-            font-size: 0.9em;
-            color: #ff69b4;
-            margin-top: 15px;
-            font-weight: bold;
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .footer {
@@ -333,15 +363,29 @@
             .interactive-area {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .puzzle-piece {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8em;
+            }
+
+            .puzzle-grid {
+                grid-template-columns: repeat(3, 60px);
+            }
+
+            .tab-buttons {
+                gap: 10px;
+            }
+
+            .tab-btn {
+                padding: 8px 15px;
+                font-size: 0.95em;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Decorative floating hearts -->
-    <div class="decorative-hearts heart-1">💕</div>
-    <div class="decorative-hearts heart-2">💕</div>
-    <div class="decorative-hearts heart-3">💕</div>
-
     <div class="container">
         <h1>Happy Girlfriend Day! 🎉</h1>
         <div class="date-badge">1 August - Ngày của những cô gái yêu quý</div>
@@ -355,33 +399,43 @@
                 "Ngày hôm nay là ngày dành để tôn vinh những người phụ nữ tuyệt vời như em. Cảm ơn em đã làm cho cuộc sống của anh trở nên đầy màu sắc và niềm vui."
             </div>
 
-            <div class="message">
-                Bấm vào các nút dưới để gửi yêu thương cho em ✨
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab(event, 'wishes')">💕 Lời chúc</button>
+                <button class="tab-btn" onclick="switchTab(event, 'game')">🎮 Game</button>
             </div>
 
-            <!-- Interactive area -->
-            <div class="interactive-area">
-                <div class="clickable-item heart-box" onclick="createHeartBurst(event)">💗</div>
-                <div class="clickable-item gift-box" onclick="createGiftBurst(event)">🎁</div>
-                <div class="clickable-item star-box" onclick="createStarBurst(event)">⭐</div>
+            <!-- Tab 1: Wishes -->
+            <div id="wishes-tab" class="tab-content active">
+                <div class="message">Bấm vào các nút dưới để gửi yêu thương cho em ✨</div>
+
+                <div class="interactive-area">
+                    <div class="clickable-item heart-box" onclick="createHeartBurst(event)">💗</div>
+                    <div class="clickable-item gift-box" onclick="createGiftBurst(event)">🎁</div>
+                    <div class="clickable-item star-box" onclick="createStarBurst(event)">⭐</div>
+                </div>
+
+                <div class="counter">
+                    <span id="heart-count">0</span> trái tim · 
+                    <span id="gift-count">0</span> quà · 
+                    <span id="star-count">0</span> sao
+                </div>
+
+                <div class="random-message" id="randomMessage">
+                    Hãy bấm vào tim, quà, hoặc sao để nhận lời chúc ❤️
+                </div>
+
+                <div class="button-group">
+                    <button class="btn" onclick="showRandomMessage()">📝 Lời chúc</button>
+                    <button class="btn" onclick="resetCounter()">🔄 Làm lại</button>
+                </div>
             </div>
 
-            <div class="counter">
-                <span id="heart-count">0</span> trái tim · 
-                <span id="gift-count">0</span> quà · 
-                <span id="star-count">0</span> sao
-            </div>
-
-            <!-- Random message -->
-            <div class="random-message" id="randomMessage">
-                Hãy bấm vào tim, quà, hoặc sao để nhận lời chúc ❤️
-            </div>
-
-            <!-- Buttons -->
-            <div class="button-group">
-                <button class="btn" onclick="playMessage()">🎵 Nghe lời chúc</button>
-                <button class="btn" onclick="showAllMessages()">📝 Tất cả lời chúc</button>
-                <button class="btn" onclick="resetCounter()">🔄 Làm lại</button>
+            <!-- Tab 2: Game -->
+            <div id="game-tab" class="tab-content">
+                <div class="message">Ghép các tim lại với nhau! 💕</div>
+                <div class="puzzle-grid" id="puzzleGrid"></div>
+                <div class="game-message" id="gameMessage">Bấm các tim để ghép chúng lại!</div>
+                <button class="btn" onclick="resetGame()">🔄 Chơi lại</button>
             </div>
         </div>
 
@@ -392,19 +446,21 @@
     </div>
 
     <audio id="bgMusic" loop>
-        <source src="https://raw.githubusercontent.com/vietduygiapdz/1staugust/main/bgmusic.mp3" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/bgmusic.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         let heartCount = 0;
         let giftCount = 0;
         let starCount = 0;
+        let matchedPieces = 0;
+        let firstPiece = null;
         let currentAudio = null;
 
         const audioUrls = {
-            guicongchua: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/main/guicongchua.m4a",
-            anhyeuem: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/main/anhyeuem.m4a",
-            camon: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/main/camon.m4a"
+            guicongchua: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/guicongchua.m4a",
+            anhyeuem: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/anhyeuem.m4a",
+            camon: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/camon.m4a"
         };
 
         const loveMessages = [
@@ -420,10 +476,20 @@
             "Anh vô cùng may mắn khi có em bên cạnh 🍀"
         ];
 
+        const puzzleAnswers = ['💗', '💗', '💕', '💕', '❤️', '❤️', '💖', '💖', '💘', '💘'];
+
+        function switchTab(event, tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
         function createHeartBurst(event) {
             heartCount++;
             document.getElementById('heart-count').textContent = heartCount;
             createBurst(event, '💗', 8);
+            launchConfetti();
             showRandomMessage();
         }
 
@@ -431,6 +497,7 @@
             giftCount++;
             document.getElementById('gift-count').textContent = giftCount;
             createBurst(event, '🎁', 8);
+            launchConfetti();
             showRandomMessage();
         }
 
@@ -438,6 +505,7 @@
             starCount++;
             document.getElementById('star-count').textContent = starCount;
             createBurst(event, '⭐', 8);
+            launchConfetti();
             showRandomMessage();
         }
 
@@ -452,16 +520,27 @@
                 const vx = Math.cos(angle) * velocity;
                 const vy = Math.sin(angle) * velocity;
 
-                const heart = document.createElement('div');
-                heart.className = 'floating-emoji';
-                heart.textContent = emoji;
-                heart.style.left = x + 'px';
-                heart.style.top = y + 'px';
-                heart.style.setProperty('--vx', vx);
-                heart.style.setProperty('--vy', vy);
-                document.body.appendChild(heart);
+                const burst = document.createElement('div');
+                burst.className = 'emoji-burst';
+                burst.textContent = emoji;
+                burst.style.left = x + 'px';
+                burst.style.top = y + 'px';
+                document.body.appendChild(burst);
 
-                setTimeout(() => heart.remove(), 3000);
+                setTimeout(() => burst.remove(), 3000);
+            }
+        }
+
+        function launchConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                const colors = ['#ff1493', '#ffb6d9', '#ffc0e0', '#ffe4f0', '#ff69b4'];
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 0.3 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
             }
         }
 
@@ -473,6 +552,77 @@
             setTimeout(() => {
                 messageEl.style.animation = 'slide-up 0.5s ease-out';
             }, 10);
+        }
+
+        function resetCounter() {
+            heartCount = 0;
+            giftCount = 0;
+            starCount = 0;
+            document.getElementById('heart-count').textContent = '0';
+            document.getElementById('gift-count').textContent = '0';
+            document.getElementById('star-count').textContent = '0';
+            document.getElementById('randomMessage').textContent = 'Đã làm lại! Hãy bấm lại để tiếp tục gửi yêu thương 💕';
+        }
+
+        function initGame() {
+            const grid = document.getElementById('puzzleGrid');
+            grid.innerHTML = '';
+            matchedPieces = 0;
+            firstPiece = null;
+            const shuffled = puzzleAnswers.sort(() => Math.random() - 0.5);
+            
+            shuffled.forEach((emoji, index) => {
+                const piece = document.createElement('div');
+                piece.className = 'puzzle-piece';
+                piece.textContent = '?';
+                piece.dataset.answer = emoji;
+                piece.dataset.index = index;
+                piece.onclick = () => matchPuzzle(piece);
+                grid.appendChild(piece);
+            });
+            
+            document.getElementById('gameMessage').textContent = 'Bấm các tim để ghép chúng lại! (0/10)';
+        }
+
+        function matchPuzzle(piece) {
+            if (piece.classList.contains('matched') || firstPiece === piece) return;
+            
+            if (!firstPiece) {
+                firstPiece = piece;
+                piece.textContent = piece.dataset.answer;
+                piece.style.background = '#ffe4f0';
+            } else {
+                piece.textContent = piece.dataset.answer;
+                
+                if (firstPiece.dataset.answer === piece.dataset.answer) {
+                    firstPiece.classList.add('matched');
+                    piece.classList.add('matched');
+                    matchedPieces += 2;
+                    launchConfetti();
+                    
+                    document.getElementById('gameMessage').textContent = `Tuyệt vời! (${matchedPieces}/10)`;
+                    
+                    if (matchedPieces === 10) {
+                        setTimeout(() => {
+                            document.getElementById('gameMessage').textContent = '🎉 Em ghép toàn bộ rồi! Anh yêu em! 💕';
+                            for (let i = 0; i < 50; i++) launchConfetti();
+                        }, 500);
+                    }
+                    firstPiece = null;
+                } else {
+                    document.getElementById('gameMessage').textContent = 'Sai rồi! Thử lại nha 😊';
+                    setTimeout(() => {
+                        firstPiece.textContent = '?';
+                        piece.textContent = '?';
+                        firstPiece.style.background = '#ffb6d9';
+                        firstPiece = null;
+                    }, 800);
+                }
+            }
+        }
+
+        function resetGame() {
+            initGame();
         }
 
         function playMessage() {
@@ -492,29 +642,15 @@
             currentAudio = new Audio(selected.audio);
             currentAudio.play().catch(error => {
                 console.log("Không thể phát âm thanh:", error);
+                alert('💕 ' + selected.text + ' 💕\n\nChúc em có một ngày tuyệt vời!');
             });
             
             alert('💕 ' + selected.text + ' 💕\n\nChúc em có một ngày tuyệt vời!');
         }
 
-        function showAllMessages() {
-            let allMessages = loveMessages.join('\n\n');
-            alert('📝 Tất cả lời chúc từ anh:\n\n' + allMessages);
-        }
-
-        function resetCounter() {
-            heartCount = 0;
-            giftCount = 0;
-            starCount = 0;
-            document.getElementById('heart-count').textContent = '0';
-            document.getElementById('gift-count').textContent = '0';
-            document.getElementById('star-count').textContent = '0';
-            document.getElementById('randomMessage').textContent = 'Đã làm lại! Hãy bấm lại để tiếp tục gửi yêu thương 💕';
-        }
-
-        // Auto show a message on load
         window.addEventListener('load', () => {
             setTimeout(showRandomMessage, 500);
+            initGame();
             
             const bgMusic = document.getElementById('bgMusic');
             if (bgMusic) {
