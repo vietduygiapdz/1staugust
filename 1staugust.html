@@ -392,20 +392,41 @@
     </div>
 
     <audio id="bgMusic" loop>
-        <source src="https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/bgmusic.mp3" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/bgmusic.mp3?v=3" type="audio/mpeg">
     </audio>
+
+    <div id="splashScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ffeef8 0%, #fff0f5 50%, #ffe4f0 100%); display: flex; justify-content: center; align-items: center; z-index: 9999; flex-direction: column;">
+        <div style="text-align: center;">
+            <div style="font-size: 4em; margin-bottom: 20px;">💕</div>
+            <h2 style="color: #ff1493; font-size: 1.8em; margin-bottom: 30px;">Bấm để bắt đầu</h2>
+            <button onclick="startExperience()" style="background: linear-gradient(135deg, #ff1493, #ff69b4); color: white; border: none; padding: 15px 40px; border-radius: 30px; font-size: 1.1em; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3); transition: all 0.3s;">Vào trang</button>
+        </div>
+    </div>
 
     <script>
         let heartCount = 0;
         let giftCount = 0;
         let starCount = 0;
         let currentAudio = null;
+        let musicPlaying = false;
 
         const audioUrls = {
-            guicongchua: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/guicongchua.m4a",
-            anhyeuem: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/anhyeuem.m4a",
-            camon: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/camon.m4a"
+            guicongchua: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/guicongchua.m4a?v=3",
+            anhyeuem: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/anhyeuem.m4a?v=3",
+            camon: "https://raw.githubusercontent.com/vietduygiapdz/1staugust/59aae6ecfa7fee2b5bf0f017957fab6c9979c62e/camon.m4a?v=3"
         };
+
+        function startExperience() {
+            const splashScreen = document.getElementById('splashScreen');
+            splashScreen.style.display = 'none';
+            
+            const bgMusic = document.getElementById('bgMusic');
+            bgMusic.volume = 0.3;
+            bgMusic.play().catch(error => {
+                console.log("Không thể phát nhạc:", error);
+            });
+            musicPlaying = true;
+        }
 
         const loveMessages = [
             "Em là người làm cuộc sống anh trở nên có ý nghĩa 💕",
